@@ -26,18 +26,21 @@ public class GameManager : MonoBehaviour
         disableTouchEvent();
     }
 
-    void Start() {
+    void Start()
+    {
         Debug.Log("Start");
         prefabs = Resources.LoadAll("Prefectures");
     }
 
-    void enableTouchEvent() {
+    void enableTouchEvent()
+    {
         GetComponent<PressGesture>().Pressed += pressedHandler;
         GetComponent<ScreenTransformGesture>().Transformed += dragTransformHandler;
         GetComponent<ScreenTransformGesture>().TransformCompleted += dragEndedHandler;
     }
 
-    void disableTouchEvent() {
+    void disableTouchEvent()
+    {
         GetComponent<PressGesture>().Pressed -= pressedHandler;
         GetComponent<ScreenTransformGesture>().Transformed -= dragTransformHandler;
         GetComponent<ScreenTransformGesture>().TransformCompleted -= dragEndedHandler;
@@ -47,7 +50,8 @@ public class GameManager : MonoBehaviour
     private void pressedHandler(object sender, System.EventArgs e)
     {
         Debug.Log("Pressed");
-        if (isObjectMoving) {
+        if (isObjectMoving)
+        {
             return;
         }
 
@@ -64,8 +68,10 @@ public class GameManager : MonoBehaviour
     }
 
     // Drag event
-    private void dragTransformHandler(object sender, System.EventArgs e) {
-        if (!isObjectMoving) {
+    private void dragTransformHandler(object sender, System.EventArgs e)
+    {
+        if (!isObjectMoving)
+        {
             return;
         }
 
@@ -77,7 +83,8 @@ public class GameManager : MonoBehaviour
         movingObject.transform.position = offset;
     }
 
-    void dragEndedHandler(object sender, System.EventArgs e) {
+    void dragEndedHandler(object sender, System.EventArgs e)
+    {
         Debug.Log("Drag Ended");
         var gesture = sender as ScreenTransformGesture;
         Vector2 offset = new Vector2(mainCamera.ScreenToWorldPoint(gesture.ScreenPosition).x, spawnOffset);
@@ -88,7 +95,8 @@ public class GameManager : MonoBehaviour
         isObjectMoving = false;
     }
 
-    public void RotateObject() {
-        movingObject.transform.Rotate(0,0,-30);
+    public void RotateObject()
+    {
+        movingObject.transform.Rotate(0, 0, -30);
     }
 }
