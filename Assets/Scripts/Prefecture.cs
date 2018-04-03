@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Prefecture : MonoBehaviour
 {
-    Rigidbody2D rigidbody;
+    Rigidbody2D rb;
     public bool isMoving = false;
 
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        if (rigidbody.velocity.magnitude > 0.01f)
+        if (rb.velocity.magnitude > 0.01f)
         {
             isMoving = true;
         }
